@@ -10,13 +10,13 @@ type EventsCardProps = {
 const EventsCard = ({ event }: EventsCardProps) => {
   return (
     <Link href={`/event/${event.slug}`} className=" flex-1 basis-80 h-[380px] max-w-[500px]">
-      <section className="relative  bg-white/[3%] flex flex-col rounded-xl overflow-hidden transition hover:scale-105 active:scale-[1.02] w-full h-full">
+      <section className="relative  bg-white/[3%] flex flex-col rounded-xl overflow-hidden  w-full h-full state-effects">
         <Image
           src={event.imageUrl}
           alt={event.name}
           width={500}
           height={280}
-          className="h-[60%] object-fit rounded-xl overflow-hidden"
+          className="h-[60%] object-cover rounded-xl overflow-hidden"
         />
         <div className="flex flex-col justify-center items-center flex-1">
           <h2 className="text-2xl font-semibold ">{event.name}</h2>

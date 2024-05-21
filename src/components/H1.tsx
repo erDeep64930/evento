@@ -3,7 +3,7 @@ import React from 'react'
 'tailwind-merge';
 type H1props ={
     children:React.ReactNode;
-    className:string;
+    className?:string;
 
 }
 const H1 = ({children,className}:H1props) => {
