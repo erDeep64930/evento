@@ -22,15 +22,16 @@ const EventsPage = async ({ params }: EventsPageProps) => {
 
   return (
     <main className="flex flex-col items-center py-24 px-[20px] min-h-[110vh]">
+      <div className="mb-28">
       <H1>
         {city === "all" && "All Events"}
         {city !== "all" &&
           `Events in ${city.charAt(0).toUpperCase() + city.slice(1)}`}
       </H1>
-      {/* map the data in componentys */}
-      <EventsList events={events}/>
-
+      </div>
      
+      {/* map the data in componentys */}
+      <EventsList events={events} />
     </main>
   );
 };
