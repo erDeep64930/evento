@@ -3,6 +3,8 @@ import Link from "next/link";
 import React from "react";
 import Logo from "./Logo";
 import { usePathname } from "next/navigation";
+
+import { cn } from "@/app/lib/utils";
 const routes = [
   { name: "Home", path: "/" },
   { name: "All Events", path: "/events/all" },
@@ -18,10 +20,12 @@ const Header = () => {
           return (
             <li
               key={route.path}
-              className={` relative transition-all${
-                activePathname === route.path ? "text-white" : "text-white/50"
-              }`}
-            >
+              className={cn("hover:text-white flex items-center relative transition",
+                {
+                  "text-white":activePathname===route.path,
+                  "text-white/50":activePathname !==route.path,}
+                )
+                }>
               <Link href={route.path}>{route.name}</Link>
 
               {activePathname === route.path && (
