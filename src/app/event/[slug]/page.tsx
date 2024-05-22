@@ -1,16 +1,29 @@
-import { sleep } from "@/app/lib/utils";
 import H1 from "@/components/H1";
+import { Metadata } from "next";
 import Image from "next/image";
 import React from "react";
-type EventPageProps = {
+type Props = {
   params: {
     slug: string;
   };
 };
 
-const EventPageSlug = async ({ params }: EventPageProps) => {
+export async function generateMetadata({ params }:Props):Promise<Metadata> {
   const slug = params.slug;
-  await sleep(2000  )
+  // for slug name in metadata
+  const response = await fetch(
+    `https://bytegrad.com/course-assets/projects/evento/api/events/${slug}`
+  );
+  const event = await response.json();
+  console.log(event);
+  return {
+    title: event.name,
+  };
+}
+
+const EventPageSlug = async ({ params }: Props) => {
+  const slug = params.slug;
+
   const response = await fetch(
     `https://bytegrad.com/course-assets/projects/evento/api/events/${slug}`
   );
