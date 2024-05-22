@@ -1,4 +1,5 @@
 import { EventoEvent } from "@/app/lib/types";
+import { sleep } from "@/app/lib/utils";
 import EventsList from "@/components/EventsList";
 import H1 from "@/components/H1";
 type EventsPageProps = {
@@ -12,6 +13,7 @@ const EventsPage = async ({ params }: EventsPageProps) => {
   // this is to make all route small
 
   const city = params.city;
+  await sleep(2000)
 
   const response = await fetch(
     `https://bytegrad.com/course-assets/projects/evento/api/events?city=${city}`

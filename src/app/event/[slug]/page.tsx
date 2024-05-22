@@ -1,3 +1,4 @@
+import { sleep } from "@/app/lib/utils";
 import H1 from "@/components/H1";
 import Image from "next/image";
 import React from "react";
@@ -9,6 +10,7 @@ type EventPageProps = {
 
 const EventPageSlug = async ({ params }: EventPageProps) => {
   const slug = params.slug;
+  await sleep(2000  )
   const response = await fetch(
     `https://bytegrad.com/course-assets/projects/evento/api/events/${slug}`
   );
