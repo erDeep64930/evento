@@ -10,11 +10,11 @@ type Props = {
 };
 
 // dynamic meta data
-export function generateMetadata({params}:Props):Metadata{
+export function generateMetadata({ params }: Props): Metadata {
   const city = params.city;
-  return{
-    title:city==="all"?"All Events":`Events in ${capitalize(city)}`,
-  }
+  return {
+    title: city === "all" ? "All Events" : `Events in ${capitalize(city)}`,
+  };
 }
 
 import React, { Suspense } from "react";
@@ -29,8 +29,7 @@ const EventsPage = async ({ params }: Props) => {
       <div className="mb-28">
         <H1>
           {city === "all" && "All Events"}
-          {city !== "all" &&
-            `Events in ${capitalize(city)}`}
+          {city !== "all" && `Events in ${capitalize(city)}`}
         </H1>
       </div>
 

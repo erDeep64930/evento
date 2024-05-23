@@ -87,7 +87,7 @@ const EventPageSlug = async ({ params }: Props) => {
         {/* this is for location section */}
         <Section>
           <SectionHeading>Location</SectionHeading>
-          <SectionContent>{event.location}</SectionContent>
+          <SectionContent>{event.location}</SectionContent>   
         </Section>
       </div>
     </main>
