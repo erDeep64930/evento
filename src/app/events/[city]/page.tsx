@@ -4,7 +4,6 @@ import EventsList from "@/components/EventsList";
 import H1 from "@/components/H1";
 import { Metadata } from "next";
 
-
 type Props = {
   params: {
     city: string;
@@ -12,14 +11,13 @@ type Props = {
 };
 
 type EventPageProps = Props & {
-  searchParams:{[key:string]:string|string[]|undefined}
-}
-
+  searchParams: { [key: string]: string | string[] | undefined };
+};
 
 // dynamic meta data
 export function generateMetadata({ params }: Props): Metadata {
   const city = params.city;
- 
+
   return {
     title: city === "all" ? "All Events" : `Events in ${capitalize(city)}`,
   };
@@ -27,11 +25,11 @@ export function generateMetadata({ params }: Props): Metadata {
 
 import React, { Suspense } from "react";
 
-const EventsPage = async ({ params,searchParams }: EventPageProps) => {
+const EventsPage = async ({ params, searchParams }: EventPageProps) => {
   // this is to make all route small
 
   const city = params.city;
-  const page =searchParams.page??1
+  const page = searchParams.page ?? 1;
 
   return (
     <main className="flex flex-col items-center py-24 px-[20px] min-h-[110vh]">
@@ -43,8 +41,8 @@ const EventsPage = async ({ params,searchParams }: EventPageProps) => {
       </div>
 
       {/* map the data in components */}
-      <Suspense fallback={<loading />}>
-        <EventsList city={city} page={+page}/>
+      <Suspense key={city + page} fallback={<loading />}>
+        <EventsList city={city} page={+page} />
       </Suspense>
     </main>
   );
