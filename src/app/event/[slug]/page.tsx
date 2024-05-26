@@ -1,3 +1,4 @@
+import { getEvent } from "@/app/lib/utils";
 import H1 from "@/components/H1";
 import { Metadata } from "next";
 import Image from "next/image";
@@ -8,13 +9,10 @@ type Props = {
   };
 };
 
-export async function generateMetadata({ params }:Props):Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = params.slug;
   // for slug name in metadata
-  const response = await fetch(
-    `https://bytegrad.com/course-assets/projects/evento/api/events/${slug}`
-  );
-  const event = await response.json();
+  const event = await getEvent(slug);
   console.log(event);
   return {
     title: event.name,
@@ -24,11 +22,7 @@ export async function generateMetadata({ params }:Props):Promise<Metadata> {
 const EventPageSlug = async ({ params }: Props) => {
   const slug = params.slug;
 
-  const response = await fetch(
-    `https://bytegrad.com/course-assets/projects/evento/api/events/${slug}`
-  );
-  const event = await response.json();
-  console.log(event);
+  const event = await getEvent(slug);
 
   return (
     <main>
@@ -87,7 +81,7 @@ const EventPageSlug = async ({ params }: Props) => {
         {/* this is for location section */}
         <Section>
           <SectionHeading>Location</SectionHeading>
-          <SectionContent>{event.location}</SectionContent>   
+          <SectionContent>{event.location}</SectionContent>
         </Section>
       </div>
     </main>

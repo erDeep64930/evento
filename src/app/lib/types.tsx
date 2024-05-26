@@ -7,6 +7,7 @@ export type EventoEvent = {
   date: Date;
   city: string;
   location:string,
-  organizerName:string,
+  // organizerName:string,
 
 };
+
