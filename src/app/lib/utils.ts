@@ -1,8 +1,7 @@
-
 import { twMerge } from "tailwind-merge";
 import clsx, { ClassValue } from "clsx";
 import { PrismaClient } from "@prisma/client";
-
+import { notFound } from "next/navigation";
 
 const prisma = new PrismaClient();
 
@@ -19,22 +18,29 @@ export async function sleep(ms: number) {
 export function capitalize(string: string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
-export async function getEvents(city: string) {
-
+export async function getEvents(city: string, page = 1) {
   const events = await prisma.eventoEvent.findMany({
     where: {
-      city:city==="all"?undefined: capitalize(city),
+      city: city === "all" ? undefined : capitalize(city),
     },
+    orderBy: {
+      date: "asc",
+    },
+    take: 6,
+    skip: (page - 1) * 6,
   });
   return events;
 }
 
 export async function getEvent(slug: string) {
-
   const event = await prisma.eventoEvent.findUnique({
     where: {
       slug: slug,
     },
   });
+
+  if (!event) {
+    return notFound();
+  }
   return event;
 }

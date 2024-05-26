@@ -4,9 +4,10 @@ import { getEvents } from "@/app/lib/utils";
 
 type EventsListProps = {
   city: string;
+  page:number;
 };
 
-const EventsList = async ({ city }: EventsListProps) => {
+const EventsList = async ({ city,page }: EventsListProps) => {
   const events = await getEvents(city);
   console.log(events);
   return (
