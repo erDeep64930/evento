@@ -22,7 +22,7 @@ const EventsList = async ({ city, page }: EventsListProps) => {
       })}
 
       {/* this is for button */}
-      <PaginationControls previousPath={previousPath} nextPath={nextPath}/>
+      <PaginationControls previousPath={previousPath} nextPath={nextPath} />
     </section>
   );
 };

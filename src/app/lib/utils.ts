@@ -30,14 +30,19 @@ export async function getEvents(city: string, page = 1) {
     skip: (page - 1) * 6,
   });
 
-  const totalCount = await prisma.eventoEvent.count({
-    where: {
-      city:capitalize(city),
-    },
-  })
-  return {events,totalCount};
-}
+  let totalCount;
+  if (city === "all") {
+    totalCount = await prisma.eventoEvent.count();
+  } else {
+    totalCount = await prisma.eventoEvent.count({
+      where: {
+        city: capitalize(city),
+      },
+    });
+  }
 
+  return { events, totalCount };
+}
 export async function getEvent(slug: string) {
   const event = await prisma.eventoEvent.findUnique({
     where: {
